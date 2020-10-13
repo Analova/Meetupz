@@ -11,6 +11,7 @@ class Navbar extends Component {
               Meetupz
             </a>
             <a
+              href="/#"
               data-activates="main-menu"
               className="button-collapse show-on-large"
             >
