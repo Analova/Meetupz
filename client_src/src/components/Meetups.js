@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import MeetupItem from "./MeetupItem";
 
 class Meetups extends Component {
   constructor() {
@@ -14,16 +15,19 @@ class Meetups extends Component {
   }
 
   getMeetups() {
-    axios.get("http://localhost:3000/api/meetups").then((response) => {
-      this.setState({ meetups: response.data }, () => {
-        //console.log(this.state);
-      });
-    });
+    axios
+      .get("http://localhost:3000/api/meetups")
+      .then((response) => {
+        this.setState({ meetups: response.data }, () => {
+          //console.log(this.state);
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {
-    const meetupItems = this.state.meetups.map((meetup, i) => {
-      return <li className="collection-item">{meetup.name}</li>;
+    const meetupItems = this.state.meetups.map((meetup) => {
+      return <MeetupItem item={meetup} key={meetup.id} />;
     });
     return (
       <div>
